@@ -1,10 +1,24 @@
-const express = require('express')
+import express from 'express'
+import { config } from 'dotenv'
+import { getAcceptanceRates, getRawHtml } from './fetchingUtils.js'
 const app = express()
-const dotenv = require('dotenv')
-dotenv.config()
 
-app.post('/', (req, res) => {
+config()
+
+app.post('/', async (req, res) => {
   const grades = req.body
+
+  const results = await getAcceptanceRates()
+
+  res.send(results)
+})
+
+app.post('/raw', async (req, res) => {
+  const grades = req.body
+
+  const results = await getRawHtml()
+
+  res.send(results)
 })
 
 const PORT = process.env.PORT || 3001

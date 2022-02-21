@@ -1,8 +1,7 @@
 import fetch from 'node-fetch'
-import { parse } from 'node-html-parser'
 import * as cheerio from 'cheerio'
 
-export async function main() {
+export async function fetchHTML() {
   const response = await fetch(
     'https://www.ims.tau.ac.il/Md/Ut/Sikuim_T.aspx',
     {
@@ -46,21 +45,7 @@ export async function main() {
 
   const $ = await cheerio.load(response)
 
-  await console.log($('tr').text())
-
-  return $('tr').text()
-  // const responseToText = await response.text()
-
-  // const responseLoaded = await cheerio.load(await response)
-
-  // const parsedHtml = parse(responseToText)
-
-  // console.log(responseToText)
-  // console.log(parsedHtml)
-
-  // console.log(responseLoaded
-
-  // const allTableRows = parse(sample).querySelectorAll('tr')
+  return $
 
   // const rowsHtml = allTableRows.map((tableRow) => {
   //   const cell = tableRow.querySelectorAll('td')[5]
@@ -69,4 +54,38 @@ export async function main() {
   //     return tableRow.querySelectorAll('td')[5].text
   //   } else return
   // })
+}
+
+export async function getRawHtml() {
+  const $ = await fetchHTML()
+
+  return $.html()
+}
+
+function parseAcceptanceByDegree(HTML) {
+  let $ = HTML
+  const elements = $('tr')
+
+  let arr = []
+
+  elements.each(function (index) {
+    if (
+      !$(this).attr('class') &&
+      $(this).css('text-align') === 'right' &&
+      !$(this).hasClass('rowalter') &&
+      $(this).text().includes('פרטים')
+    ) {
+      arr.push(index + ':' + $(this).text() + $(this).text().includes('קבלה'))
+    }
+  })
+
+  return arr
+}
+
+export async function getAcceptanceRates() {
+  const $ = await fetchHTML()
+
+  const results = parseAcceptanceByDegree($)
+
+  return results
 }
