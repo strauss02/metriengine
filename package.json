@@ -1,0 +1,28 @@
+{
+  "name": "metriengine",
+  "version": "0.0.1",
+  "description": "API for calculating success rates for getting into universities",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/strauss02/metriengine.git"
+  },
+  "author": "Ido Strauss <strauss02@hotmail.co.il>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/strauss02/metriengine/issues"
+  },
+  "homepage": "https://github.com/strauss02/metriengine#readme",
+  "dependencies": {
+    "dotenv": "^12.0.4",
+    "express": "^4.17.2",
+    "node-fetch": "^3.1.1",
+    "node-html-parser": "^5.2.0",
+    "nodemon": "^2.0.15"
+  },
+  "type": "module"
+}
