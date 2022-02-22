@@ -1,0 +1,8 @@
+## TAU CALC :
+-can accept bagrut (ממוצע בגרות מותאם) and psicho
+-returns results in an object from
+- currently scrapes isOpen, last year's acceptance and this year's acceptance
+- todo: scrape each degree's facualty
+
+
+## HUJI CALC :

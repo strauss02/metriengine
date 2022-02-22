@@ -1,7 +1,7 @@
 import fetch from 'node-fetch'
 import * as cheerio from 'cheerio'
 
-export async function fetchHTML() {
+export async function fetchHTML(bagrut, psicho) {
   const response = await fetch(
     'https://www.ims.tau.ac.il/Md/Ut/Sikuim_T.aspx',
     {
@@ -24,7 +24,7 @@ export async function fetchHTML() {
       },
       referrer: 'https://www.ims.tau.ac.il/Md/Ut/Sikuim.aspx',
       referrerPolicy: 'strict-origin-when-cross-origin',
-      body: 'txtBagrut=80&txtPsicho=7100&allfacs=1&facs=11&facs=06&facs=01&facs=12&facs=07&facs=03&facs=14&facs=08&facs=04&facs=15&facs=10&facs=05&facs=18&facs=09&Enter.x=33&Enter.y=11',
+      body: `txtBagrut=${bagrut}&txtPsicho=${psicho}&allfacs=1&facs=11&facs=06&facs=01&facs=12&facs=07&facs=03&facs=14&facs=08&facs=04&facs=15&facs=10&facs=05&facs=18&facs=09&Enter.x=33&Enter.y=11`,
       method: 'POST',
       mode: 'cors',
       credentials: 'include',
@@ -66,7 +66,7 @@ function parseAcceptanceByDegree(HTML) {
   let $ = HTML
   const elements = $('tr')
 
-  let arr = []
+  let rates = {}
 
   elements.each(function (index) {
     if (
@@ -75,15 +75,47 @@ function parseAcceptanceByDegree(HTML) {
       !$(this).hasClass('rowalter') &&
       $(this).text().includes('פרטים')
     ) {
-      arr.push(index + ':' + $(this).text() + $(this).text().includes('קבלה'))
+      const line = $(this).text()
+
+      const infoArr = []
+      $(this)
+        .children()
+        .each(function (index) {
+          infoArr.push($(this).text())
+        })
+
+      const indexOfID = getIndexOfDegreeID(line)
+
+      const degreeName = line.slice(indexOfID, line.length) //OKAY
+      const degreeAcceptance = line.slice(0, indexOfID)
+      const splittedLine = degreeAcceptance.split(/\s/)
+
+      // const degreeInfo = {
+      //   isOpen: degreeAcceptance.match(/פתוחה/) ? true : false,
+      //   acceptanceLastYear: splittedLine,
+      // }
+
+      const degreeInfo = {
+        isOpen: infoArr[2],
+        acceptanceLastYear: infoArr[3],
+        acceptanceCurrentYear: infoArr[4],
+      }
+
+      rates[`${degreeName} Degree Name`] = degreeInfo
     }
   })
 
-  return arr
+  return rates
 }
 
-export async function getAcceptanceRates() {
-  const $ = await fetchHTML()
+function getIndexOfDegreeID(string) {
+  const regex = /\d{4}/
+
+  return string.search(regex)
+}
+
+export async function getAcceptanceRates(bagrut, psicho) {
+  const $ = await fetchHTML(bagrut, psicho)
 
   const results = parseAcceptanceByDegree($)
 

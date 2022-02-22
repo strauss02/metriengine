@@ -13,6 +13,14 @@ app.post('/', async (req, res) => {
   res.send(results)
 })
 
+app.get('/api/get_rates/all', async (req, res) => {
+  const grades = req.query
+
+  const results = await getAcceptanceRates(110, 800)
+
+  res.send(results)
+})
+
 app.post('/raw', async (req, res) => {
   const grades = req.body
 
