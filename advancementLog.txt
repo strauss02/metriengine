@@ -9,3 +9,8 @@
 - it appears that their acceptance site is pretty annoying. so far i've found a way to get all the degrees that are open and will accept you. 
 - the juice is in the div with class 'search-results multi'. it contains the list of degrees.
 - that div can contain the list of degrees in a straight forward fashion if the toggler is toggled right. otherwise, the degrees are grouped by their facualty.
+
+## BIU CALC :
+- accepts dynamic grade sheet
+- returns organsied result sheet
+- TODO: add sum calculation.
