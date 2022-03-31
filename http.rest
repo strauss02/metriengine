@@ -19,31 +19,10 @@ content-type: application/json
 
 ###
 
-POST http://localhost:3002/alt
-content-type: application/json
+POST https://www.ims.tau.ac.il/Md/Ut/Bagrut_T.aspx
+content-type: application/x-www-form-urlencoded
 
-{
-    "name": "sample",
-    "time": "Wed, 21 Oct 2015 18:27:50 GMT"
-}
-
-
-###
-
-GET https://go.huji.ac.il/jjson/huji.json?
-content-type: application/json
-#HUJI Calc
-
-###
-
-GET https://shoham.biu.ac.il/kabala/Results.aspx
-Cookie: ASP.NET_SessionId=vjmqwxdplrqlyeawb554kevq
-#Bar Ilan Calc
-
-###
-
-POST https://shoham.biu.ac.il/kabala/Psychometric.aspx
-Cookie: ASP.NET_SessionId=vjmqwxdplrqlyeawb554kevq
+tziun063=94&yl063=2&tziun010=97&yl010=5&tziun014=90&yl014=4&tziun020=88&yl020=2&tziun005=84&yl005=2&tziun004=92&yl004=2&tziun001=89&yl001=2&tziun016=86&yl016=5&tziun022=98&yl022=5&tziun011=90&yl011=5
 #Bar Ilan Calc
 
 

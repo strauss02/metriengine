@@ -3,6 +3,9 @@
 -returns results in an object from
 - currently scrapes isOpen, last year's acceptance and this year's acceptance
 - todo: scrape each degree's facualty
+- Finish implementing sum calculation.  (build the getTAUSums func)
+- finish translation of IDByClass
+-
 
 
 ## HUJI CALC :
