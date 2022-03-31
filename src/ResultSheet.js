@@ -1,7 +1,5 @@
 class ResultSheet {
-  constructor(acronym) {
-    this.universityAcronym = acronym
-  }
+  constructor() {}
   results = {}
 
   addResult(curriculum, departemnt, admissionStatus, enrollmentStatus) {
