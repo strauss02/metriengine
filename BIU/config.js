@@ -1,3 +1,5 @@
-const config = {}
+const config = {
+  ROW_SELECTOR: '#ContentPlaceHolder1_GridView1 tr:not([style])',
+}
 
-export { config }
+export default config

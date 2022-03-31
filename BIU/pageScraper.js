@@ -1,4 +1,6 @@
 import config from './config.js'
+import ResultSheet from './resultSheet.js'
+
 const scraperObject = {
   url: 'https://shoham.biu.ac.il/kabala/Psychometric.aspx',
   async scraper(browser) {
@@ -47,33 +49,33 @@ const scraperObject = {
     =================================*/
     // New Sheet
 
-    class resultSheet {
-      constructor() {}
-
-      addResult(curriculum, departemnt, admissionStatus, enrollmentStatus) {
-        this[curriculum] = {
-          departemnt,
-          admissionStatus,
-          enrollmentStatus,
-        }
-      }
-    }
-
     await page.waitForSelector('td a')
-    let answerCells = await page.$$(
-      '#ContentPlaceHolder1_GridView1 tr:not([style])'
-    )
-    let answersArray = []
-    for (let i = 0; i < answerCells.length; i++) {
-      const content = await (
-        await answerCells[i].getProperty('innerText')
-      ).jsonValue()
-      console.log(content)
-      answersArray.push(content)
-      console.log(content)
+    // let answerCells = await page.$$(config.ROW_SELECTOR)
+    //
+
+    function extractRowData(rows) {
+      let arr = rows.map((row) => {
+        return [
+          row.children.item(0).textContent.trim(),
+          row.children.item(1).textContent.trim(),
+          row.children.item(2).textContent.trim(),
+          row.children.item(3).textContent.trim(),
+        ]
+      })
+      return arr
     }
 
-    console.log(answersArray)
+    const rowData = await page.$$eval(config.ROW_SELECTOR, extractRowData)
+
+    const resultSheet = new ResultSheet('BIU')
+
+    await rowData.forEach((results) => {
+      resultSheet.addResult(results[0], results[1], results[2], results[3])
+    })
+
+    console.log('this is line 77', resultSheet)
+
+    await browser.close()
   },
 }
 
