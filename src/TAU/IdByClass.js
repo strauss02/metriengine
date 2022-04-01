@@ -13,25 +13,34 @@ export default {
   017: 'biology',
   041: 'geography',
   '019': 'agriculture',
-  055: ' חשמל',
-  016: ' כימיה',
-  022: ' מדעי החברה',
-  042: ' מדעי המחשב',
-  '028': ' מוסיקה',
-  021: ' מחשבת ישראל',
-  053: ' מכשור ובקרה',
-  054: ' מכניקה הנדסית',
-  012: ' ערבית',
-  015: ' פיזיקה',
-  073: ' פסיכולוגיה',
-  011: ' צרפתית',
-  013: ' שפה זרה אחרת',
-  003: ' תורה',
-  002: ' תלמוד',
-  096: ' אחר עם בונוס',
-  097: ' אחר עם בונוס',
-  000: ' אחר עם בונוס',
-  080: ' אחר ללא בונוס',
-  098: ' אחר ללא בונוס',
-  099: ' אחר ללא בונוס',
+  055: 'electricity',
+  016: 'chemistry',
+  022: 'social science',
+  042: 'computer science',
+  '028': 'music',
+  // מחשבת ישראל
+  021: 'jewish thought',
+  //מכשור ובקרה
+  053: 'control engineering',
+  // מכניקה הנדסית
+  054: 'engineering mechanics',
+  // ערבית
+  012: 'arabic',
+  015: 'physics',
+  073: 'psychology',
+  011: 'french',
+  // שפה זרה אחרת
+  013: 'foreign language',
+  // תורה
+  003: 'torah',
+  // תלמוד
+  002: 'talmud',
+  //  אחר עם בונוס
+  096: 'other with bonus',
+  097: 'other with bonus',
+  000: 'other with bonus',
+  //  אחר ללא בונוס
+  080: 'other without bonus',
+  098: 'other without bonus',
+  099: 'other without bonus',
 }
