@@ -1,5 +1,6 @@
 import fetch from 'node-fetch'
 import * as cheerio from 'cheerio'
+import IdBySubject from './IdBySubject.js'
 
 export async function fetchHTML(bagrut, psicho) {
   const response = await fetch(
@@ -120,4 +121,51 @@ export async function getAcceptanceRates(bagrut, psicho) {
   const results = parseAcceptanceByDegree($)
 
   return results
+}
+
+export function createSumRequestBody(bagrutGrades) {
+  let body = ``
+  for (let subject in bagrutGrades) {
+    const id = IdBySubject[subject]
+    const subjectData = bagrutGrades[subject]
+    body += `tziun${id}=${subjectData.grade}&yl${id}=${subjectData.units}&`
+  }
+  return body
+}
+
+export async function getTAUSums(gradeSheet) {
+  const body = createSumRequestBody(gradeSheet.bagrut)
+  const response = await fetch(
+    'https://www.ims.tau.ac.il/Md/Ut/Bagrut_T.aspx',
+    {
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      method: 'POST',
+      body,
+    }
+  )
+    .then(function (res) {
+      // The API call was successful!
+      return res.text()
+    })
+    .catch(function (err) {
+      // There was an error
+      console.warn('Something went wrong.', err)
+    })
+
+  const $ = await cheerio.load(response)
+
+  let sum = await parseSum($)
+  return sum
+}
+
+function parseSum(HTML) {
+  let $ = HTML
+  const elements = $(`td[style = "font-size:16px"] b`)
+  const sumCell = elements.get(1)
+  console.log()
+  const sum = sumCell.children[0].data
+
+  return sum
 }

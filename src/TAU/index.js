@@ -1,4 +1,4 @@
-import { getAcceptanceRates } from './fetchingUtils'
+import { getAcceptanceRates, getTAUSums } from './fetchingUtils'
 
 async function main(gradeSheet) {
   // Get TAU sums

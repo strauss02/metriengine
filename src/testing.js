@@ -1,5 +1,10 @@
 import main from './BIU/index.js'
 import GradeSheet from './GradeSheet.js'
+import {
+  createSumRequestBody,
+  getTAUSums,
+  getAcceptanceRates,
+} from './TAU/fetchingUtils.js'
 
 let testGradeSheet = new GradeSheet()
 
@@ -54,8 +59,8 @@ const testBagrutGrades = {
     units: '5',
   },
   chemistry: {
-    grade: '80',
-    units: '5',
+    grade: '90',
+    units: '10',
   },
 }
 
@@ -63,8 +68,9 @@ testGradeSheet.addBagrutGrades(testBagrutGrades)
 testGradeSheet.addPetGrades(testPetGrades)
 testGradeSheet.addBIUSum('120')
 
-console.log(testGradeSheet)
+// let results = await main(testGradeSheet)
+let sum = await getTAUSums(testGradeSheet)
+console.log(sum)
+let testRates = await getAcceptanceRates(Number(sum), 700)
 
-let results = await main(testGradeSheet)
-
-console.log(results)
+console.log(await testRates)
