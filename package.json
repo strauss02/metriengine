@@ -29,5 +29,8 @@
     "nodemon": "^2.0.15",
     "puppeteer": "^13.5.1"
   },
-  "type": "module"
+  "type": "module",
+  "devDependencies": {
+    "typescript": "^4.6.3"
+  }
 }

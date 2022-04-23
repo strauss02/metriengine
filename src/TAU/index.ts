@@ -1,6 +1,6 @@
 import { getAcceptanceRates, getTAUSums } from './fetchingUtils'
 
-async function main(gradeSheet) {
+async function main(gradeSheet: any) {
   // Get TAU sums
   const [bagrut, pet] = await getTAUSums(gradeSheet)
 
