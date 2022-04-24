@@ -15,5 +15,8 @@ class GradeSheet {
   addBIUSum(sum) {
     this.sums.biu = sum
   }
+  addTAUSum(sum) {
+    this.sums.TAU = sum
+  }
 }
 export default GradeSheet

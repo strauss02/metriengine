@@ -40,10 +40,10 @@ export default {
   talmud: '002',
   //  אחר עם בונוס
   'other with bonus': '096',
-  'other with bonus': '097',
-  'other with bonus': '000',
+  // 'other with bonus': '097',
+  // 'other with bonus': '000',
   //  אחר ללא בונוס
   'other without bonus': '080',
-  'other without bonus': '098',
-  'other without bonus': '099',
+  // 'other without bonus': '098',
+  // 'other without bonus': '099',
 }

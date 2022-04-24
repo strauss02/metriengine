@@ -5,18 +5,19 @@ import {
   getTAUSums,
   getAcceptanceRates,
 } from './TAU/fetchingUtils.js'
+import getTAU from './TAU/index.js'
 
 let testGradeSheet = new GradeSheet()
 
 const testPetGrades = {
   section: {
-    quantitive: '150',
+    quantitative: '150',
     verbal: '150',
     english: '150',
   },
   final: {
     general: '800',
-    quantitive: '800',
+    quantitative: '800',
     verbal: '800',
   },
 }
@@ -66,11 +67,23 @@ const testBagrutGrades = {
 
 testGradeSheet.addBagrutGrades(testBagrutGrades)
 testGradeSheet.addPetGrades(testPetGrades)
+
 testGradeSheet.addBIUSum('120')
 
-// let results = await main(testGradeSheet)
-let sum = await getTAUSums(testGradeSheet)
-console.log(sum)
-let testRates = await getAcceptanceRates(Number(sum), 700)
+async function testTAU(gradeSheet) {
+  const results = await getTAU(gradeSheet)
+  console.dir(results)
+}
 
-console.log(await testRates)
+// function testBIU(gradeSheet) {
+//   let sum = await getBIUSums(gradeSheet)
+//   console.log(sum)
+//   gradeSheet.addBIUsum(sum)
+//   let testRates = await getBIUAcceptanceRates()
+//   console.log(testRates)
+
+// }
+
+function testAll(gradeSheet) {}
+
+testTAU(testGradeSheet)

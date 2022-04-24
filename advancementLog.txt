@@ -1,8 +1,8 @@
 ## TAU CALC :
 - currently scrapes isOpen, last year's acceptance and this year's acceptance
-- functionality - almost full. Able to retrieve full result sheet using only a gradeSheet. Sum calculation is autuomated. In order for it to be full we need to apply a uniform resultSheet structure that will apply to all universities. 
-right now TAU is missing the facualty name
-- [   ] todo: scrape each degree's facualty
+- functionality - almost full. Able to retrieve full result sheet using only a gradeSheet. Sum calculation is automated. In order for it to be full we need to apply a uniform resultSheet structure that will apply to all universities. 
+right now TAU is missing the faculty name
+- [   ] todo: scrape each degree's faculty
 - [ x ] Finish implementing sum calculation.  (build the getTAUSums func)
 - [ x ] finish translation of IDByClass
 -
@@ -11,7 +11,7 @@ right now TAU is missing the facualty name
 ## HUJI CALC :
 - it appears that their acceptance site is pretty annoying. so far i've found a way to get all the degrees that are open and will accept you. 
 - the juice is in the div with class 'search-results multi'. it contains the list of degrees.
-- that div can contain the list of degrees in a straight forward fashion if the toggler is toggled right. otherwise, the degrees are grouped by their facualty.
+- that div can contain the list of degrees in a straight forward fashion if the toggler is toggled right. otherwise, the degrees are grouped by their faculty.
 
 ## BIU CALC :
 - accepts dynamic grade sheet

@@ -3,6 +3,7 @@ import * as cheerio from 'cheerio'
 import IdBySubject from './IdBySubject.js'
 
 export async function fetchHTML(bagrut, psicho) {
+  console.log(typeof bagrut, typeof psicho)
   const response = await fetch(
     'https://www.ims.tau.ac.il/Md/Ut/Sikuim_T.aspx',
     {
@@ -25,10 +26,10 @@ export async function fetchHTML(bagrut, psicho) {
       },
       referrer: 'https://www.ims.tau.ac.il/Md/Ut/Sikuim.aspx',
       referrerPolicy: 'strict-origin-when-cross-origin',
-      body: `txtBagrut=${bagrut}&txtPsicho=${psicho}&allfacs=1&facs=11&facs=06&facs=01&facs=12&facs=07&facs=03&facs=14&facs=08&facs=04&facs=15&facs=10&facs=05&facs=18&facs=09&Enter.x=33&Enter.y=11`,
+      body: `txtBagrut=${Number(bagrut)}&txtPsicho=${Number(
+        psicho
+      )}&allfacs=1&facs=11&facs=06&facs=01&facs=12&facs=07&facs=03&facs=14&facs=08&facs=04&facs=15&facs=10&facs=05&facs=18&facs=09&Enter.x=33&Enter.y=11`,
       method: 'POST',
-      mode: 'cors',
-      credentials: 'include',
     }
   )
     .then(function (res) {
@@ -44,7 +45,7 @@ export async function fetchHTML(bagrut, psicho) {
       console.warn('Something went wrong.', err)
     })
 
-  const $ = await cheerio.load(response)
+  const $ = await cheerio.load(response || '')
 
   return $
 
@@ -77,7 +78,6 @@ function parseAcceptanceByDegree(HTML) {
       $(this).text().includes('פרטים')
     ) {
       const line = $(this).text()
-
       const infoArr = []
       $(this)
         .children()
@@ -117,7 +117,6 @@ function getIndexOfDegreeID(string) {
 
 export async function getAcceptanceRates(bagrut, psicho) {
   const $ = await fetchHTML(bagrut, psicho)
-
   const results = parseAcceptanceByDegree($)
 
   return results
@@ -154,8 +153,7 @@ export async function getTAUSums(gradeSheet) {
       console.warn('Something went wrong.', err)
     })
 
-  const $ = await cheerio.load(response)
-
+  const $ = await cheerio.load(response || '')
   let sum = await parseSum($)
   return sum
 }
@@ -164,7 +162,6 @@ function parseSum(HTML) {
   let $ = HTML
   const elements = $(`td[style = "font-size:16px"] b`)
   const sumCell = elements.get(1)
-  console.log()
   const sum = sumCell.children[0].data
 
   return sum

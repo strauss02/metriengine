@@ -2,7 +2,7 @@
   "name": "metriengine",
   "version": "0.0.1",
   "description": "API for calculating success rates for getting into universities",
-  "main": "index.js",
+  "main": "dist/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon ./src/index.js",
@@ -31,6 +31,7 @@
   },
   "type": "module",
   "devDependencies": {
+    "ts-node": "^10.7.0",
     "typescript": "^4.6.3"
   }
 }
