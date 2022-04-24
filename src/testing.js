@@ -1,4 +1,4 @@
-import main from './BIU/index.js'
+import { main, main2 } from './BIU/index.js'
 import GradeSheet from './GradeSheet.js'
 import {
   createSumRequestBody,
@@ -68,22 +68,21 @@ const testBagrutGrades = {
 testGradeSheet.addBagrutGrades(testBagrutGrades)
 testGradeSheet.addPetGrades(testPetGrades)
 
-testGradeSheet.addBIUSum('120')
+// testGradeSheet.addBIUSum('120')
 
 async function testTAU(gradeSheet) {
   const results = await getTAU(gradeSheet)
   console.dir(results)
 }
 
-// function testBIU(gradeSheet) {
-//   let sum = await getBIUSums(gradeSheet)
-//   console.log(sum)
-//   gradeSheet.addBIUsum(sum)
-//   let testRates = await getBIUAcceptanceRates()
-//   console.log(testRates)
-
-// }
+async function testBIU(gradeSheet) {
+  // let sum = await getBIUSums(gradeSheet)
+  // console.log(sum)
+  gradeSheet.addBIUSum('120')
+  let testRates = await main2(gradeSheet)
+  console.dir('testrates from end', await testRates)
+}
 
 function testAll(gradeSheet) {}
 
-testTAU(testGradeSheet)
+testBIU(testGradeSheet)

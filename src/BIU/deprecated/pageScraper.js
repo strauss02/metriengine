@@ -1,5 +1,5 @@
-import config from './config.js'
-import BIUResultSheet from './BIUResultSheet.js'
+import config from '../config.js'
+import BIUResultSheet from '../BIUResultSheet.js'
 const scraperObject = {
   url: 'https://shoham.biu.ac.il/kabala/Psychometric.aspx',
   async scraper(browser, gradeSheet) {

@@ -1,0 +1,9 @@
+This is for future users to understand what's going on with this scraper's structure.
+
+0. index.js --> function 'main' initiates the procedure.
+1. startBrowser is invoked. --> goto file browser.js
+2. startBrowser returns a browser instance. --> control flows back to index.js
+3. main() calls scraperController and passes in the browser instance and the gradesheet. --> control flows to pageController.js
+4. in pageController.js, function scrapeAll takes the pageScraper and passes in the browser and the gradesheet. --> control flows to pageScraper.js
+5. this is where the magic happens. the object scraperObject has a property 'scraper' which is a function that includes instructions on how to scrape the page.
+

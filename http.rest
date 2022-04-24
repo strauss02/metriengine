@@ -1,30 +1,11 @@
-GET  http://localhost:3002/api/get_rates/all
-content-type: application/json
 
-{
-    "name": "sample",
-    "time": "Wed, 21 Oct 2015 18:27:50 GMT"
-}
-
-
-###
-
-POST http://localhost:3002/raw
-content-type: application/json
-
-{
-    "name": "sample",
-    "time": "Wed, 21 Oct 2015 18:27:50 GMT"
-}
-
-###
+### 
 
 POST https://www.ims.tau.ac.il/Md/Ut/Bagrut_T.aspx
 content-type: application/x-www-form-urlencoded
 
 tziun010=90&yl010=5&tziun063=90&yl063=3&tziun014=90&yl014=3&tziun020=90&yl020=3&tziun005=90&yl005=3&tziun004=90&yl004=3&tziun001=90&yl001=3&tziun017=90&yl017=5&tziun015=80&yl015=5&tziun016=80&yl016=5&
+
+###
+
 #Bar Ilan Calc
-
-
-
-
