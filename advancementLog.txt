@@ -19,3 +19,7 @@ right now TAU is missing the faculty name
 - TODO: add sum calculation.
 It seems that the bagrut avg calculator is also unscrapable without the help of a headless browser. We need to create another scraper scheme, very similar to the main BIU scraper, that'll scrape the bagrut sum.
 - [  ] create a bagrut avg calculator.
+
+#GENERAL 
+- [  ] Create a universal helper function that takes in a hebrew subject name and a university and returns it's corresponding english term
+- [  ] Shoot an screen record with narration about where we left last time for future development after each development session

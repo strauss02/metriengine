@@ -1,4 +1,4 @@
-import { main, main2 } from './BIU/index.js'
+import { main2 } from './BIU/index.js'
 import GradeSheet from './GradeSheet.js'
 import {
   createSumRequestBody,
@@ -28,40 +28,41 @@ const testBagrutGrades = {
     units: '5',
   },
   civics: {
-    grade: '90',
+    grade: '91',
     units: '3',
   },
   math: {
-    grade: '90',
-    units: '3',
+    grade: '92',
+    units: '4',
   },
   history: {
-    grade: '90',
+    grade: '94',
     units: '3',
   },
   hebrew: {
-    grade: '90',
-    units: '3',
+    grade: '95',
+    units: '2',
   },
   literature: {
-    grade: '90',
-    units: '3',
+    grade: '96',
+    units: '2',
   },
   bible: {
-    grade: '90',
-    units: '3',
+    grade: '80',
+    units: '2',
   },
   biology: {
-    grade: '90',
+    grade: '99',
     units: '5',
   },
   physics: {
-    grade: '80',
+    grade: '89',
     units: '5',
   },
-  chemistry: {
-    grade: '90',
-    units: '10',
+  someObscureSubject: {
+    hasBonus: 'true',
+    grade: '87',
+    units: '5',
   },
 }
 
@@ -78,7 +79,6 @@ async function testTAU(gradeSheet) {
 async function testBIU(gradeSheet) {
   // let sum = await getBIUSums(gradeSheet)
   // console.log(sum)
-  gradeSheet.addBIUSum('120')
   let testRates = await main2(gradeSheet)
   console.dir('testrates from end', await testRates)
 }

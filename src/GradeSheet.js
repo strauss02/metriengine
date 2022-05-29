@@ -4,6 +4,7 @@ class GradeSheet {
   pet = {}
   sums = {}
 
+  // OPTIONAL-TODO : add 'isBase' field to base bagrut subjects
   addBagrutGrades(bagrutGrades) {
     this.bagrut = bagrutGrades
   }

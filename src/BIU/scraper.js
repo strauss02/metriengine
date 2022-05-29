@@ -1,15 +1,73 @@
 import puppeteer from 'puppeteer'
 import config from './config.js'
 import BIUResultSheet from './BIUResultSheet.js'
+import { NUM_BY_SUBJECT, SUBJECT_BY_NUM, TRANSLATIONS } from './constants.js'
 
 const scrape = async (gradeSheet) => {
+  /***********************
+ PHASE 0 - SET UP BROWSER
+ ************************/
   const browser = await puppeteer.launch({ headless: false })
   const page = await browser.newPage()
+
+  /***********************
+   PHASE 1 - CALCULATE BAGRUT AVG
+   ************************/
+  await page.goto('https://shoham.biu.ac.il/kabala/Bagrut.aspx')
   console.log(`Navigating to ${'site'}...`)
-  await page.goto('https://shoham.biu.ac.il/kabala/Psychometric.aspx')
+
+  // Why 8? the ID enumeration of the first elective subject input starts with 8.
+  // All following elective input ID's are serially increasing by one.
+  let electivesCount = 8
+  for (const subject in gradeSheet.bagrut) {
+    let num = SUBJECT_BY_NUM[subject]
+    // If num is undefined, that means the current subject is an elective subject.
+    // We increase the electivesCount so that the following elective will get input to the correct field.
+    if (num === undefined) {
+      num = electivesCount
+      electivesCount++
+      // Elective subjects require selection from a dropdown.
+      await page.select(
+        `#ContentPlaceHolder1_rptSubjects_cmbSubjects_${num}`,
+        // select the elective subject (translate)
+        TRANSLATIONS[subject] ||
+          (gradeSheet.bagrut[subject].hasBonus && 'אחר (כולל בונוס)') ||
+          'אחר_1'
+      )
+    }
+    // If the current subject is a base bagrut subject, fill it's info in the corresponding input. (Only base subjects are enumerated by BIU)
+    // units
+    await page.type(
+      `#ContentPlaceHolder1_rptSubjects_edtUnits_${num}`,
+      gradeSheet.bagrut[subject].units
+    )
+    // grade
+    await page.type(
+      `#ContentPlaceHolder1_rptSubjects_edtGrade_${num}`,
+      gradeSheet.bagrut[subject].grade
+    )
+    console.log(subject)
+  }
+
+  await page.click('#ContentPlaceHolder1_btnCalcMat0')
+  await page.waitForResponse(
+    (response) =>
+      response.url() === 'https://shoham.biu.ac.il/kabala/Bagrut.aspx' &&
+      response.status() === 200
+  )
+  console.log('clicked and responded')
+  await page.waitForTimeout(1000)
+  await page.click('#ContentPlaceHolder1_btnNext')
+  await page.waitForTimeout(1000)
+
+  page.waitForNavigation({ waitUntil: 'networkidle2' })
+
+  /***********************
+ PHASE 2 - 
+ ************************/
 
   // Bagrut Meshuklal
-  await page.type('#ContentPlaceHolder1_txtBagrut', gradeSheet.sums.biu)
+  await page.type('#ContentPlaceHolder1_txtBagrut', String(gradeSheet.sums.biu))
   // Bagrut Math grade
   await page.type(
     '#ContentPlaceHolder1_txtMathGrade',

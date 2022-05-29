@@ -1,2 +1,13 @@
 # metriengine
- API for calculating success rates for getting into universities
+
+API for calculating success rates for getting into universities
+
+## glossary clarifications
+
+electives = מקצועות בחירה
+base subjects = מקצועות חובה
+thesis = עבודת גמר
+
+## Notes
+
+BIU accepts only students with at least 4 English units.
