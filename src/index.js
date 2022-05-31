@@ -1,7 +1,6 @@
 import express from 'express'
 import { config } from 'dotenv'
 import { getAcceptanceRates, getRawHtml } from './TAU/fetchingUtils.js'
-import main from './BIU/index.js'
 const app = express()
 
 config()

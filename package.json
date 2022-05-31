@@ -6,6 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon ./src/index.js",
+    "watch": "npx tsc --watch",
     "scrapeBIU": "node ./src/BIU/index.js",
     "scrapeTAU": "node ./src/TAU/index.js"
   },

@@ -84,5 +84,8 @@ async function testBIU(gradeSheet) {
 }
 
 function testAll(gradeSheet) {}
+// UPDATE 31/5/2022 : TAU and BIU are working from start to end. This doesn't include edge case handling and was not thoroughly tested.
+// I Think next step should be start working on another university.
 
-testBIU(testGradeSheet)
+// testBIU(testGradeSheet)
+testTAU(testGradeSheet)
