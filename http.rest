@@ -9,3 +9,36 @@ tziun010=90&yl010=5&tziun063=90&yl063=3&tziun014=90&yl014=3&tziun020=90&yl020=3&
 ###
 
 #Bar Ilan Calc
+
+###
+
+#huji
+
+POST https://bagrut-calculator.huji.ac.il/api/api/bargrutCalculator/GetBagrutCalc/
+Content-Type: application/json
+
+{"Year":2023,"SectorID":1,"Subjects":[{"SubjectID":1,"IsProject":false,"Points":"5","Grade":"100"},{"SubjectID":8,"IsProject":false,"Points":"2","Grade":"100"},{"SubjectID":11,"IsProject":false,"Points":"2","Grade":"100"},{"SubjectID":16,"IsProject":false,"Points":"5","Grade":"100"},{"SubjectID":22,"IsProject":false,"Points":"2","Grade":"100"},{"SubjectID":24,"IsProject":false,"Points":"2","Grade":"100"},{"SubjectID":35,"IsProject":false,"Points":"5","Grade":"100"},{"SubjectID":37,"IsProject":false,"Points":"5","Grade":"90"}]}
+
+###
+
+
+fetch("https://bagrut-calculator.huji.ac.il/api/api/bargrutCalculator/GetBagrutCalc/", {
+  "headers": {
+    "accept": "application/json, text/plain, */*",
+    "accept-language": "en-US,en;q=0.9,he-IL;q=0.8,he;q=0.7",
+    "cache-control": "no-cache",
+    "content-type": "application/json",
+    "pragma": "no-cache",
+    "sec-ch-ua": "\" Not A;Brand\";v=\"99\", \"Chromium\";v=\"102\", \"Google Chrome\";v=\"102\"",
+    "sec-ch-ua-mobile": "?0",
+    "sec-ch-ua-platform": "\"Windows\"",
+    "sec-fetch-dest": "empty",
+    "sec-fetch-mode": "cors",
+    "sec-fetch-site": "same-origin",
+    "cookie": "glassix-visitor-id-v2-ae4edaa7-9020-46d9-8df3-114f0e6fec3c=d359eaf0-7e33-4d40-ab4b-7ca69b7a83b0; _ga=GA1.1.910476547.1655317416; _ga_YZZ2JERBHF=GS1.1.1656676465.4.0.1656676471.0",
+    "Referer": "https://bagrut-calculator.huji.ac.il/calculator/",
+    "Referrer-Policy": "strict-origin-when-cross-origin"
+  },
+  "body": "{\"Year\":2023,\"SectorID\":1,\"Subjects\":[{\"SubjectID\":1,\"IsProject\":false,\"Points\":\"5\",\"Grade\":\"100\"},{\"SubjectID\":8,\"IsProject\":false,\"Points\":\"2\",\"Grade\":\"100\"},{\"SubjectID\":11,\"IsProject\":false,\"Points\":\"2\",\"Grade\":\"100\"},{\"SubjectID\":16,\"IsProject\":false,\"Points\":\"5\",\"Grade\":\"100\"},{\"SubjectID\":22,\"IsProject\":false,\"Points\":\"2\",\"Grade\":\"100\"},{\"SubjectID\":24,\"IsProject\":false,\"Points\":\"2\",\"Grade\":\"100\"},{\"SubjectID\":35,\"IsProject\":false,\"Points\":\"5\",\"Grade\":\"100\"},{\"SubjectID\":37,\"IsProject\":false,\"Points\":\"5\",\"Grade\":\"90\"}]}",
+  "method": "POST"
+});

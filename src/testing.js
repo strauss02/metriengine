@@ -1,5 +1,5 @@
 import { main2 } from './BIU/index.js'
-import GradeSheet from './GradeSheet.js'
+import { GradeSheet } from './GradeSheet.js'
 import {
   createSumRequestBody,
   getTAUSums,

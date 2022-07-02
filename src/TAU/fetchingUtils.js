@@ -24,8 +24,8 @@ export async function fetchHTML(bagrut, psicho) {
         'sec-fetch-user': '?1',
         'upgrade-insecure-requests': '1',
       },
-      referrer: 'https://www.ims.tau.ac.il/Md/Ut/Sikuim.aspx',
-      referrerPolicy: 'strict-origin-when-cross-origin',
+      // referrer: 'https://www.ims.tau.ac.il/Md/Ut/Sikuim.aspx',
+      // referrerPolicy: 'strict-origin-when-cross-origin',
       body: `txtBagrut=${Number(bagrut)}&txtPsicho=${Number(
         psicho
       )}&allfacs=1&facs=11&facs=06&facs=01&facs=12&facs=07&facs=03&facs=14&facs=08&facs=04&facs=15&facs=10&facs=05&facs=18&facs=09&Enter.x=33&Enter.y=11`,
